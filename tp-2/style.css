@@ -1,0 +1,82 @@
+body{
+   background-color: #222;
+   color: #ee6; 
+}
+
+h1{
+    text-align: center;
+    text-transform: uppercase;
+    color: black; /* Color inicial */
+    transition: color 0.3s ease; /* tiempo de transicion*/
+    cursor: pointer; /* Cambia el puntero para indicar que es interactivo */
+}
+h1:hover {
+  color: #3498db; /* Color al pasar el puntero (ej. azul) */
+}
+p{
+    font-family: sans-serif;
+    color: #efe;
+}
+
+h2{
+    color: #eee;
+}
+
+h3{
+    color: #eee;
+}
+
+strong{
+    border-bottom-color: #f8f8f8;
+}
+
+.the-force{
+    background-color: #444;
+    font-weight: bold;
+}
+
+.light-side{
+    color: #66f;
+
+}
+
+.dark-side{
+    color:#f33;
+}
+
+#og-trilogy:nth-child(even) {
+  background-color: #111;
+    list-style-type: circle;
+}
+a {/* Color para los links que aún no se han visitado */
+  color: blue;
+  text-decoration: none;
+}
+a:visited {  /* Color para los links ya visitados */
+  color: gray;
+}
+
+/*Color cuando pasás el mouse (hover) */
+a:hover {
+  color: red;
+}
+
+.movies-list:nth-of-type(2) {
+    padding-left: 20px;
+}
+
+.movies-list:nth-of-type(3) li:last-child {
+    margin-top: 15px;
+}
+
+a:not([href]){
+    font-family: cursive;
+}
+
+li:nth-child(even) {
+  background-color: #111;
+}
+li:nth-child(odd) {
+  background-color: #333;
+}
+
