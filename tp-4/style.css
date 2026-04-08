@@ -1,0 +1,72 @@
+/* 1. Cambiar fondo de body cuando la pantalla sea > 400px */
+@media (min-width: 401px) {
+    body {
+        background-color: rgb(40, 60, 80);
+    }
+}
+
+/* 2. Centrar h1 cuando la pantalla sea < 800px */
+@media (max-width: 799px) {
+    h1 {
+        text-align: center;
+    }
+}
+
+/* 3. Article max-width: 50ch en orientación horizontal */
+@media (orientation: landscape) {
+    article {
+        max-width: 50ch;
+    }
+}
+
+/* 4. Color de fondo de h1 cuando el alto sea como mínimo 200px */
+@media (min-height: 200px) {
+    h1 {
+        background-color: #34495e; /* Se añade un color para notar el cambio */
+    }
+}
+
+/* 5. Fuente serif para párrafos al imprimir */
+@media print {
+    p {
+        font-family: serif;
+    }
+}
+
+/* 6. Preferencia de colores claros (Light Mode) */
+@media (prefers-color-scheme: light) {
+    body, h1 {
+        color: #111;
+        background-color: #DDD;
+    }
+}
+
+/* 7. Pantalla que NO soporta hover (dispositivos táctiles) */
+@media screen and (hover: none) {
+    a {
+        background-color: #212;
+        padding: 2px 5px;
+    }
+}
+
+/* 8. Pantalla entre 800px y 899px: Ocultar imagen */
+@media screen and (min-width: 800px) and (max-width: 899px) {
+    img {
+        display: none;
+    }
+}
+
+/* 9. Pantalla entre 200px y 400px: Imagen con alto fijo y cover */
+@media screen and (min-width: 200px) and (max-width: 400px) {
+    img {
+        height: 400px;
+        object-fit: cover;
+    }
+}
+
+/* 10. Fondo de article cuando Device Pixel Ratio > 2 */
+@media (min-resolution: 2.1dppx) {
+    article {
+        background-color: #667;
+    }
+}
