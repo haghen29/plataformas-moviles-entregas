@@ -70,13 +70,13 @@
     <div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="ima1.jfif" class="d-block w-100" alt="...">
+      <img src="ima1.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="ima2.png" class="d-block w-100" alt="...">
+      <img src="ima2.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="ima3.jfif" class="d-block w-100" alt="...">
+      <img src="ima3.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
