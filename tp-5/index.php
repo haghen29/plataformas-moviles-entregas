@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Versiones con Git</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+<!-- 3)1)-->
+    <nav class=" navbar bg-primary" data-bs-theme="dark" navbar navbar-expand-lg bg-body-tertiary >
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
 
+
+    <!-- 2)1)-->
+    <h1 class="text-center">Control de Versiones con Git</h1>
+
+    <!-- 2)2)-->
+    <p class="fs-2"><strong>Git</strong> es un sistema de control de versiones distribuido, ampliamente utilizado en el desarrollo de
+        software moderno. Fue creado para gestionar proyectos de forma rápida, eficiente y colaborativa.</p>
+
+    <h2>Comandos más populares de Git</h2>
+     <!-- 2)5)-->
+    <ul class="mt-5 shadow p-3 mb-5 bg-body-tertiary rounded">
+        <li><code>git init</code> - Inicializa un nuevo repositorio Git en el directorio actual. Este comando crea un repositorio vacío.</li>
+        <li><code>git clone [url]</code> - Clona un repositorio remoto en tu máquina local. Ejemplo: <code>git clone https://github.com/usuario/repositorio.git</code>.</li>
+        <li><code>git status</code> - Muestra el estado del repositorio: archivos modificados, nuevos archivos no rastreados, cambios preparados para el commit, etc.</li>
+        <li><code>git add [archivo]</code> - Agrega un archivo o cambios específicos al área de preparación (staging area) para el commit.</li>
+        <li><code>git commit -m "[mensaje]"</code> - Crea un commit con los archivos añadidos al área de preparación, agregando un mensaje descriptivo.</li>
+        <li><code>git push</code> - Sube los cambios locales al repositorio remoto. Generalmente se usa después de un commit para actualizar el repositorio remoto.</li>
+        <li><code>git pull</code> - Obtiene y combina los cambios del repositorio remoto al local. Equivalente a <code>git fetch</code> seguido de <code>git merge</code>.</li>
+        <li><code>git checkout [rama]</code> - Cambia a una rama específica del repositorio. Si la rama no existe, se puede crear con <code>git checkout -b [rama]</code>.</li>
+    </ul>
+
+    <!-- 3)2)-->
+    <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="ima1.jfif" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="ima2.png" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="ima3.jfif" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+    <h2>Comparación con otros sistemas</h2>
+    <!-- 2)4)-->
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th>Sistema</th>
+                <th>Tipo</th>
+                <th>Popularidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Git</td>
+                <td>Distribuido</td>
+                <td>Muy alta</td>
+            </tr>
+            <tr>
+                <td>SVN</td>
+                <td>Centralizado</td>
+                <td>Media</td>
+            </tr>
+            <tr>
+                <td>Mercurial</td>
+                <td>Distribuido</td>
+                <td>Baja</td>
+            </tr>
+            <tr>
+                <td>Perforce</td>
+                <td>Centralizado</td>
+                <td>Especializado (AAA, empresas)</td>
+            </tr>
+        </tbody>
+    </table>
+    
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal --><!-- Full screen modal -->
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-fullscreen-xxl-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <h2>¿Ya usaste Git?</h2>
+    <p>Completá el siguiente formulario para compartir tu experiencia:</p>
+
+    <form class="form">
+        <label for="nombre">Tu nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control">
+
+        <label for="experiencia">¿Qué usás más?</label><br>
+        <select id="experiencia" name="experiencia" class="form-select">
+            <option value="git">Git</option>
+            <option value="github">Git + GitHub</option>
+            <option value="otro">Otro sistema</option>
+            <option value="ninguno">Todavía no uso ninguno</option>
+        </select>
+
+        <input type="submit" value="Enviar" class="btn btn-danger">
+    </form>
+    <!-- 2)3)-->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
