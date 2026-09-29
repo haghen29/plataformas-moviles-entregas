@@ -28,10 +28,10 @@ function elevarAlCubo(num) {
 	return num * num * num;
 }
 
-
 console.log("Resultados de elevarAlCubo():")
 console.log(elevarAlCubo(3)); // 27
 console.log(elevarAlCubo(99)); // 970299
+
 
 // 3- Implementar una función "restoDivisionEntera" para devolver el resto de una división entera entre un dividendo y un divisor
 // ejemplo: restoDivisionEntera(3,2) retorna 1
@@ -58,8 +58,8 @@ console.log(numeroPi())
 
 // 5- Implementar una función "numeroRandom" para devolver un número random (aleatorio)
 // ejemplo: numeroRandom() retorna 0,123...
-	function numeroRandom() {
-return Math.random();
+function numeroRandom() {
+	return Math.random();
 }
 
 console.log("Resultados de numeroRandom():")
@@ -70,12 +70,15 @@ console.log(numeroRandom())
 
 // 6- Implementar una función "numeroRandomDesdeHasta" para devolver un número random entre 2 valores recibidos como parámetros
 // ejemplo: numeroRandomDesdeHasta(1,6) retorna 3
-// Math.floor() = redondear hacia abajo al entero más cercano.
-// Math.random() = devuelve un número entre 0 y 1. si se multiplica por 3(ejemplo) nro devuelve un nro entre 0 y 2,999. se le coloca min porque sino devuelve un nro entre 0 y 2,999. 
-// se coloca +1 porque sino devuelve un nro entre 0 y 2,999. si se le coloca min devuelve un nro entre min y max-1. si se le coloca +1 devuelve un nro entre min y max.
+// Math.floor() = redondea hacia abajo al entero más cercano.
+// Math.random() = devuelve un número entre 0 y 1, sin incluir el 1.
+// Al multiplicarlo por 3, devuelve un número mayor o igual a 0 y menor que 3.
+// Se multiplica por (max - min + 1) para poder obtener todos los números enteros desde min hasta max.
+// Se coloca + min para que el resultado comience desde el valor mínimo indicado.
 function numeroRandomDesdeHasta(min, max) {
 	return Math.floor(numeroRandom() * (max - min + 1)) + min;
 }
+
 console.log("Resultados de numeroRandomDesdeHasta():")
 console.log(numeroRandomDesdeHasta(1,6))
 console.log(numeroRandomDesdeHasta(2,5))
@@ -84,10 +87,12 @@ console.log(numeroRandomDesdeHasta(3,4))
 
 // 7- Implementar una función "esPar" que reciba un número como parámetro y devuelva verdadero si el número es par, o falso si es impar
 // ejemplo: esPar(4) retorna true, esPar(5) retorna false
-//es par si al dividirlo por 2 el resto es 0. si el resto es distinto de 0 es impar.
+// Es par si al dividirlo por 2 el resto es 0.
+// Si el resto es distinto de 0 es impar.
 function esPar(num) {
 	return num % 2 === 0;
 }
+
 console.log("Resultados de esPar():")
 console.log(esPar(4)); // true
 console.log(esPar(5)); // false
@@ -110,16 +115,30 @@ console.log(esPositivo(4)); // true
 console.log(esPositivo(-3)); // false
 console.log(esPositivo(0)); // false
 
+
 // 9- Implementar una función "clasificarNumero" que reciba un número y retorne un mensaje indicando si el número es par o impar, y si es positivo o negativo
 // ejemplo: clasificarNumero(4) retorna "El número 4 es par y positivo."
 // ejemplo: clasificarNumero(-3) retorna "El número -3 es impar y negativo."
-//el simbolo ? es un if de una sola linea. el simbolo : es un else de una sola linea. se puede anidar ifs de una sola linea.
-// en vez de usar ${} 
+// El símbolo ? es un if de una sola línea.
+// El símbolo : es el else de una sola línea.
+// Se pueden anidar condiciones de una sola línea.
+// En este caso hay que diferenciar el 0 porque no es positivo ni negativo.
 function clasificarNumero(num) {
 	var paridad = esPar(num) ? "par" : "impar";
-	var signo = esPositivo(num) ? "positivo" : "negativo";
-	return `El número ${num} es ${paridad} y ${signo}.`; //si o si para ${} se debe usar comillas invertidas o blackticks ``. 
-	//si se quiere usar comillas simples o dobles se puede colocar: return "El número " + num + " es " + paridad + " y " + signo + ".";
+	var signo;
+
+	if (num > 0) {
+		signo = "positivo";
+	} else if (num < 0) {
+		signo = "negativo";
+	} else {
+		signo = "no positivo";
+	}
+
+	return `El número ${num} es ${paridad} y ${signo}.`;
+	// Para usar ${} se deben utilizar comillas invertidas o backticks ``.
+	// Si se quieren usar comillas simples o dobles se puede colocar:
+	// return "El número " + num + " es " + paridad + " y " + signo + ".";
 }
 
 console.log("Resultados de clasificarNumero():")
@@ -127,11 +146,13 @@ console.log(clasificarNumero(4)); // "El número 4 es par y positivo."
 console.log(clasificarNumero(-3)); // "El número -3 es impar y negativo."
 console.log(clasificarNumero(0)); // "El número 0 es par y no positivo."
 
+
 // Cadenas de Caracteres
 
 // 10- Implementar una función "transformarMayuscula" que transforme a mayúscula la cadena de caracteres recibida como parámetro
 // ejemplo: transformarMayuscula("Plataformas Móviles") retorna "PLATAFORMAS MÓVILES"
-// la funcion toUpperCase() convierte todos los caracteres de una cadena a mayúsculas. el punto antes de toUpperCase() indica que se está llamando a un método de la cadena de caracteres.
+// La función toUpperCase() convierte todos los caracteres de una cadena a mayúsculas.
+// El punto antes de toUpperCase() indica que se está llamando a un método de la cadena de caracteres.
 function transformarMayuscula(cadena) {
 	return cadena.toUpperCase();
 }
@@ -156,7 +177,6 @@ console.log(primeraLetra("abc"))
 
 // 12- Implementar una función "sinPrimeraLetra" que nos devuelva la cadena de caracteres recibida como parámetro sin la primera letra
 // ejemplo: sinPrimeraLetra("Plataformas") retorna "lataformas"
-
 function sinPrimeraLetra(cadena) {
 	return cadena.substring(1);
 }
@@ -167,9 +187,11 @@ console.log(sinPrimeraLetra("hola mundo"))
 console.log(sinPrimeraLetra("abc"))
 
 
-// 13- Implementar una función "primeraLetraMayuscula" que devuelve la cadena de caracteres recibida, pero  con su primera letra en mayúscula
+// 13- Implementar una función "primeraLetraMayuscula" que devuelve la cadena de caracteres recibida, pero con su primera letra en mayúscula
 // ejemplo: primeraLetraMayuscula("plataformas") retorna "Plataformas"
-// substring(1) devuelve la cadena desde el índice 1 hasta el final. charAt(0) devuelve el carácter en el índice 0. toUpperCase() convierte el carácter a mayúscula.
+// substring(1) devuelve la cadena desde el índice 1 hasta el final.
+// charAt(0) devuelve el carácter en el índice 0.
+// toUpperCase() convierte el carácter a mayúscula.
 function primeraLetraMayuscula(cadena) {
 	return cadena.charAt(0).toUpperCase() + cadena.substring(1);
 }
@@ -182,7 +204,8 @@ console.log(primeraLetraMayuscula("abc"))
 
 // 14- Implementar una función "terminaCon" que devuelve verdadero o falso si la palabra termina con la terminación recibida
 // ejemplo: terminaCon("plataformas", "mas") retorna true
-// endsWith() devuelve true si la cadena termina con la cadena especificada, de lo contrario devuelve false.
+// endsWith() devuelve true si la cadena termina con la cadena especificada.
+// De lo contrario devuelve false.
 function terminaCon(cadena, terminacion) {
 	return cadena.endsWith(terminacion);
 }
@@ -193,10 +216,12 @@ console.log(terminaCon("hola", "o")); // false
 console.log(terminaCon("plataformas", "mas")); // true
 console.log(terminaCon("plataformas", "más")); // false
 
+
 // 15- Implementar una función "palabraInvertida" que devuelva la palabra invertida
 // ejemplo: palabraInvertida("hola") retorna "aloh";
-// split() divide la cadena en un array de caracteres. reverse() invierte el orden de los elementos del array. join() une los elementos del array en una cadena.
-// se coloca ("") porque sino devuelve un array de palabras y no de caracteres. si se coloca (" ") devuelve un array de palabras. si se coloca ("") devuelve un array de caracteres.
+// split("") divide la cadena en un array de caracteres.
+// reverse() invierte el orden de los elementos del array.
+// join("") une los elementos del array en una cadena sin agregar ningún separador.
 function palabraInvertida(cadena) {
 	return cadena.split("").reverse().join("");
 }
