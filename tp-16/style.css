@@ -1,16 +1,20 @@
+/* fondo gris clarito */
 body {
   background-color: #f5f5f5;
 }
 
+/* separacion entre las cartas */
 .card {
   margin-bottom: 20px;
 }
 
+/* todas las fotos de las cartas del mismo alto, recortadas para que no se deformen */
 .card img {
   height: 200px;
   object-fit: cover;
 }
 
+/* la foto del modal ocupa todo el ancho */
 #modalCuerpo img {
   width: 100%;
   margin-bottom: 15px;
