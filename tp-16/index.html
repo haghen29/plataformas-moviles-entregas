@@ -1,66 +1,171 @@
+<!-- DOCTYPE: le avisa al navegador que el archivo es HTML5 -->
 <!DOCTYPE html>
+
+<!-- etiqueta raiz de toda la pagina. lang="es" indica que el contenido esta en español -->
 <html lang="es">
+
+<!-- HEAD: informacion de la pagina que no se ve en pantalla (titulo, estilos, configuracion) -->
 <head>
+  <!-- charset UTF-8: permite que se vean bien los acentos y la ñ -->
   <meta charset="UTF-8">
+
+  <!-- viewport: hace que la pagina se adapte al ancho de la pantalla del celular
+       (sin esto la grilla responsiva de bootstrap no funciona bien en celulares) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- title: el texto que aparece en la pestaña del navegador -->
   <title>Valpoletano</title>
-  <!-- bootstrap desde el cdn -->
+
+  <!-- link a los estilos de bootstrap desde un CDN (internet).
+       de aca salen todas las clases como container, btn, card, row, col, modal, etc. -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- mis estilos -->
+
+  <!-- link a style.css, los estilos propios de la pagina.
+       se carga despues de bootstrap para poder pisar sus estilos si hace falta -->
   <link rel="stylesheet" href="style.css">
 </head>
+
+<!-- BODY: todo lo que se ve en la pagina.
+     el color de fondo gris se define en style.css (regla "body") -->
 <body>
 
-  <!-- barra de arriba con el nombre de la pagina -->
+  <!-- NAVBAR: barra de arriba de la pagina.
+       clase "navbar": componente de bootstrap para barras de navegacion.
+       clase "bg-dark": le pone fondo oscuro (casi negro). -->
   <nav class="navbar bg-dark">
+
+    <!-- clase "container": centra el contenido y le deja margenes a los costados
+         (en pantallas grandes no ocupa todo el ancho) -->
     <div class="container">
+
+      <!-- nombre de la pagina.
+           clase "navbar-brand": estilo de bootstrap para el nombre/logo de la barra (letra mas grande).
+           clase "text-white": pone el texto en blanco para que se lea sobre el fondo oscuro. -->
       <span class="navbar-brand text-white">Valpoletano</span>
     </div>
   </nav>
 
+  <!-- CONTENEDOR PRINCIPAL: adentro va todo el recetario.
+       clase "container": centra el contenido igual que en la barra.
+       clase "mt-4": margin-top (margen de arriba) tamaño 4, para separarlo de la barra. -->
   <div class="container mt-4">
+
+    <!-- titulo principal de la pagina (fijo, no cambia) -->
     <h1>Recetario</h1>
 
-    <!-- botones para cambiar el tipo de comida -->
-    <!-- a la funcion le paso el nombre que usa la api (las americanas son "United States") -->
+    <!-- BOTONES DE TIPO DE COMIDA
+         clase "mb-3": margin-bottom (margen de abajo) tamaño 3, separa los botones del titulo de abajo.
+         cada boton, al hacer click (onclick), ejecuta la funcion cargarRecetas() de script.js
+         y le pasa el nombre del pais tal como lo pide la API de TheMealDB.
+         esa funcion borra las cartas que habia y trae las recetas nuevas de ese pais. -->
     <div class="mb-3">
+
+      <!-- boton de recetas chinas.
+           clase "btn": estilo base de boton de bootstrap.
+           clase "btn-danger": color rojo.
+           llama a cargarRecetas('Chinese') -->
       <button class="btn btn-danger" onclick="cargarRecetas('Chinese')">Chinas</button>
+
+      <!-- boton de recetas italianas.
+           clase "btn-success": color verde.
+           llama a cargarRecetas('Italian') -->
       <button class="btn btn-success" onclick="cargarRecetas('Italian')">Italianas</button>
+
+      <!-- boton de recetas americanas.
+           clase "btn-primary": color azul.
+           llama a cargarRecetas('United States') porque la API no reconoce 'American'
+           y devuelve las recetas de Estados Unidos con el nombre "United States". -->
       <button class="btn btn-primary" onclick="cargarRecetas('United States')">Americanas</button>
     </div>
 
-    <!-- este titulo lo cambio desde el js -->
+    <!-- SUBTITULO del tipo de receta que se esta mostrando.
+         id="titulo": con este id lo busca script.js (const titulo).
+         el texto "Recetas chinas" es solo el inicial: cada vez que se toca un boton,
+         la funcion cargarRecetas() lo reemplaza por "Recetas chinas", "Recetas italianas"
+         o "Recetas americanas" segun el objeto "nombres" de script.js. -->
     <h3 id="titulo">Recetas chinas</h3>
 
-    <!-- spinner de carga, se muestra mientras espero a la api -->
+    <!-- SPINNER DE CARGA (estado "loading")
+         id="spinner": con este id lo busca script.js (const spinner).
+         script.js lo muestra (display = "block") cuando empieza a pedir recetas a la API
+         y lo esconde (display = "none") cuando las recetas llegan o cuando hay un error.
+         clase "text-center": centra el contenido horizontalmente.
+         clase "my-4": margen arriba y abajo tamaño 4 (la "y" es el eje vertical). -->
     <div id="spinner" class="text-center my-4">
+
+      <!-- circulito que gira.
+           clase "spinner-border": componente de bootstrap que dibuja el circulo animado.
+           role="status": le indica a los lectores de pantalla que es un indicador de estado. -->
       <div class="spinner-border" role="status"></div>
+
+      <!-- texto debajo del circulito -->
       <p>Cargando...</p>
     </div>
 
-    <!-- aca adentro el js mete las cartas de las recetas -->
+    <!-- GRILLA DE CARTAS DE RECETAS
+         id="recetas": con este id lo busca script.js (const contenedor).
+         empieza vacio. la funcion cargarRecetas() de script.js agrega aca adentro
+         una carta por cada receta (con foto, nombre y boton "Ver receta").
+         cada vez que se toca un boton de pais, se vacia y se llena con las recetas nuevas.
+         clase "row": fila de la grilla de bootstrap. las cartas que se meten adentro
+         tienen clases "col-..." que deciden cuantas entran por fila segun el tamaño de pantalla. -->
     <div class="row" id="recetas"></div>
   </div>
 
-  <!-- modal para ver la receta -->
-  <!-- esta escondido y se abre cuando tocas "Ver receta" -->
+  <!-- MODAL (ventana emergente) PARA VER LA RECETA COMPLETA
+       esta escondido al cargar la pagina. se abre cuando se toca el boton "Ver receta"
+       de una carta, que ejecuta la funcion verReceta() de script.js.
+       id="modalReceta": con este id lo busca script.js para crear el modal de bootstrap y mostrarlo.
+       clase "modal": componente ventana emergente de bootstrap (empieza oculto).
+       clase "fade": le da la animacion de aparecer/desaparecer suave.
+       tabindex="-1": necesario para que el modal se pueda cerrar con la tecla Esc. -->
   <div class="modal fade" id="modalReceta" tabindex="-1">
+
+    <!-- clase "modal-dialog": la caja que se centra en la pantalla.
+         clase "modal-lg": la hace mas ancha (large) para que entren bien la foto y los pasos. -->
     <div class="modal-dialog modal-lg">
+
+      <!-- clase "modal-content": el fondo blanco con bordes redondeados del modal -->
       <div class="modal-content">
+
+        <!-- clase "modal-header": parte de arriba del modal, con el titulo y la cruz para cerrar -->
         <div class="modal-header">
-          <!-- el nombre de la receta -->
+
+          <!-- TITULO DEL MODAL
+               id="modalTitulo": con este id lo busca script.js.
+               empieza vacio. verReceta() primero le pone "Cargando..."
+               y cuando llega la receta lo reemplaza por el nombre de la receta.
+               clase "modal-title": estilo de titulo de bootstrap para modales. -->
           <h5 class="modal-title" id="modalTitulo"></h5>
+
+          <!-- boton con la cruz (X) para cerrar.
+               clase "btn-close": dibuja la X de bootstrap.
+               data-bs-dismiss="modal": hace que bootstrap cierre el modal al tocarlo
+               (no hace falta escribir js para esto). -->
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <!-- aca va la foto, los ingredientes y los pasos -->
+
+        <!-- CUERPO DEL MODAL
+             id="modalCuerpo": con este id lo busca script.js.
+             empieza vacio. verReceta() primero mete un spinner mientras carga
+             y cuando llega la receta lo reemplaza por: la foto, la categoria y el origen,
+             la lista de ingredientes con sus cantidades y los pasos de preparacion.
+             el tamaño de la foto se define en style.css (regla "#modalCuerpo img").
+             clase "modal-body": el espacio con margenes internos para el contenido. -->
         <div class="modal-body" id="modalCuerpo"></div>
       </div>
     </div>
   </div>
 
-  <!-- js de bootstrap (lo necesito para el modal) -->
+  <!-- javascript de bootstrap (version "bundle", que trae todo junto).
+       hace falta para que funcione el modal: abrirlo, cerrarlo, la animacion.
+       script.js usa "bootstrap.Modal", que viene de este archivo,
+       por eso tiene que cargarse antes que script.js. -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- mi js -->
+
+  <!-- script.js: la logica de la pagina (pedir recetas a la API, armar las cartas, llenar el modal).
+       va al final del body para que todos los elementos de arriba (spinner, titulo, recetas, modal)
+       ya existan cuando el js los busca con getElementById. -->
   <script src="script.js"></script>
 </body>
 </html>
